@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -e
+
+if ! command -v claude &>/dev/null; then
+  echo "Error: claude CLI not found. Install Claude Code first: https://claude.ai/code"
+  exit 1
+fi
+
+if claude mcp list 2>/dev/null | grep -q "^FileFetch:"; then
+  echo "FileFetch is already registered with Claude Code."
+else
+  echo "Run this to register FileFetch with Claude Code:"
+  echo ""
+  echo "  claude mcp add --scope user FileFetch filefetch-core"
+  echo ""
+  echo "Then restart Claude Code."
+fi
