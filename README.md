@@ -17,7 +17,9 @@ File content is extracted and processed by a small, fast model, keeping the main
 
 ## Why MCP
 
-FileFetch is implemented as an MCP tool rather than a skill or shell script so that Claude discovers and calls it autonomously — the same way it calls built-in tools like WebFetch. When Claude decides it needs a one-off answer from a file, it can reach for `query` or `queryAll` without being explicitly told to. Skills and shell scripts require either user invocation or CLAUDE.md instructions to wire them in; MCP tools appear in Claude's tool list at session start and need no additional routing.
+FileFetch is packaged as an MCP server to be idiomatic with Claude Code's built-in tools — `query` and `queryAll` appear in Claude's tool list at session start, alongside `Bash`, `Read`, and `Edit`, with the same typed schema and the same calling convention. No CLAUDE.md wiring, no slash command, no user prompt required. Claude reaches for it the same way it reaches for anything else in its tool list.
+
+FileFetch runs as a self-hosted MCP server via stdio. Claude Code spawns it at session start and kills it when the session ends — it has no persistent process outside of that.
 
 ## Install via Homebrew
 
